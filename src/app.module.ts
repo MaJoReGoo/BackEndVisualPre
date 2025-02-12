@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { VisualModule } from './visual/visual.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MeasurementTypesModule } from './measurement-types/measurement-types.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { MeasurementTypesModule } from './measurement-types/measurement-types.mo
     }),
     VisualModule,
     MeasurementTypesModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
