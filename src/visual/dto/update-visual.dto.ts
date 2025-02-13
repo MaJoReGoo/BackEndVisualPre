@@ -2,8 +2,8 @@ import { PartialType } from '@nestjs/mapped-types';
 import { CreateVisualDto } from './create-visual.dto';
 import { IsInt, IsOptional, IsString, MinLength } from 'class-validator';
 
-export class UpdateVisualDto {
-  @IsString()
+export class UpdateVisualDto extends PartialType(CreateVisualDto) {
+  /* @IsString()
   @IsOptional()
   serverName?: string;
   @IsString()
@@ -13,5 +13,5 @@ export class UpdateVisualDto {
   @IsOptional()
   serverPort?: number;
   @IsOptional()
-    measurementType?: string;
+    measurementType?: string; */
 }

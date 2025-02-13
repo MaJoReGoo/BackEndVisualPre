@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import { RegisterDto } from './dto/register.dto';
 import * as bcrypt from 'bcryptjs';
@@ -7,8 +11,9 @@ import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly usersService: UsersService,
-    private readonly jwService:JwtService
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly jwService: JwtService,
   ) {}
 
   async register({ name, email, password }: RegisterDto) {
@@ -21,14 +26,14 @@ export class AuthService {
       email,
       password: await bcrypt.hash(password, 10),
     });
-    return{
+    return {
       name,
-      email, 
-    }
+      email,
+    };
   }
 
   async login({ email, password }: loginDto) {
-    const user = await this.usersService.findOneByEmail(email);
+    const user = await this.usersService.findOneByEmailWithPassword(email);
     if (!user) {
       throw new UnauthorizedException('email is wrong');
     }
@@ -43,13 +48,10 @@ export class AuthService {
     return {
       token,
       email,
-    }
+    };
   }
 
-  async profile({email, rol}: {email: string, rol: string}) {
-    /* if (rol !== 'admin') {
-      throw new UnauthorizedException('You are not an admin',);
-    } */
+  async profile({ email, rol }: { email: string; rol: string }) {
     return await this.usersService.findOneByEmail(email);
   }
 }

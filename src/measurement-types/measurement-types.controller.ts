@@ -2,7 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { MeasurementTypesService } from './measurement-types.service';
 import { CreateMeasurementTypeDto } from './dto/create-measurement-type.dto';
 import { UpdateMeasurementTypeDto } from './dto/update-measurement-type.dto';
+import { Auth } from 'src/auth/decorators/auth.decorator';
+import { Role } from 'src/common/enums/role.enum';
 
+@Auth(Role.ADMIN)
 @Controller('measurement-types')
 export class MeasurementTypesController {
   constructor(private readonly measurementTypesService: MeasurementTypesService) {}

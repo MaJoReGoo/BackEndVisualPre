@@ -7,23 +7,26 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class UsersService {
-
-constructor(
-  @InjectRepository(User)
-  private readonly userRepository: Repository<User>,
-){}
+  constructor(
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
+  ) {}
 
   create(createUserDto: CreateUserDto) {
     return this.userRepository.save(createUserDto);
   }
 
-
-findOneByEmail(email: string) {
-  return this.userRepository.findOneBy({ email });
-}
+  findOneByEmail(email: string) {
+    return this.userRepository.findOneBy({ email });
+  }
+  findOneByEmailWithPassword(email: string) {
+    return this.userRepository.findOne({ where: { email },
+    select: ['id', 'name', 'email',  'password', 'rol'],
+   });
+  }
 
   findAll() {
-    return `This action returns all users`;
+    return this.userRepository.find();
   }
 
   findOne(id: number) {
