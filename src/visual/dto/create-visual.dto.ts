@@ -1,5 +1,4 @@
-import { Optional } from "@nestjs/common";
-import { IsInt, IsString } from "class-validator";
+import { IsArray, IsInt, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class CreateVisualDto {
 
@@ -9,7 +8,7 @@ export class CreateVisualDto {
   serverIp: string;
   @IsInt()
   serverPort: number;
-  @IsString()
-  @Optional()
-  measurementType?: string;
+  @IsOptional()
+  @IsArray()
+  measurementTypeIds?: number[];  // Cambiar de measurementType a measurementTypeIds
 }

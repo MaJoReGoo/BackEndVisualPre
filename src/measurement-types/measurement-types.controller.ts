@@ -26,9 +26,10 @@ export class MeasurementTypesController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: number, @Body() updateMeasurementTypeDto: UpdateMeasurementTypeDto) {
-    return this.measurementTypesService.update(id, updateMeasurementTypeDto);
-  }
+update(@Param('id') id: number, @Body() updateMeasurementTypeDto: UpdateMeasurementTypeDto) {
+  return this.measurementTypesService.update(id, updateMeasurementTypeDto);
+}
+
 
   @Delete(':id')
   remove(@Param('id') id: number) {

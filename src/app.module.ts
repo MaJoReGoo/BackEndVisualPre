@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MeasurementTypesModule } from './measurement-types/measurement-types.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { MeasurementVisualModule } from './measurementVisual/measurement-visual.module'; // Importa el módulo de MeasurementVisual
 
 @Module({
   imports: [
@@ -18,10 +19,11 @@ import { UsersModule } from './users/users.module';
       autoLoadEntities: true,
       synchronize: false,
     }),
+    UsersModule,
+    AuthModule,
     VisualModule,
     MeasurementTypesModule,
-    AuthModule,
-    UsersModule,
+    MeasurementVisualModule, // Agrega MeasurementVisualModule aquí
   ],
   controllers: [],
   providers: [],

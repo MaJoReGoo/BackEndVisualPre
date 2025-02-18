@@ -27,8 +27,20 @@ constructor(
   }
 
   async update(id: number, updateMeasurementTypeDto: UpdateMeasurementTypeDto) {
-    return `This action updates a #${id} measurementType`;
+    // Buscar el tipo de medición por ID
+    const measurementType = await this.measurementTypeRepository.findOne({ where: { id } });
+    
+    if (!measurementType) {
+      throw new Error(`MeasurementType with id ${id} not found`);
+    }
+  
+    // Actualizar el tipo de medición con los nuevos datos
+    Object.assign(measurementType, updateMeasurementTypeDto);
+  
+    // Guardar el tipo de medición actualizado
+    return await this.measurementTypeRepository.save(measurementType);
   }
+  
 
   async remove(id: number) {
     return `This action removes a #${id} measurementType`;

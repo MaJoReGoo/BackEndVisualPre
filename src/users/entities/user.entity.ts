@@ -1,9 +1,10 @@
+import { Visual } from 'src/visual/entities/visual.entity';
 import { Role } from '../../common/enums/role.enum';
-import { Column, DeleteDateColumn, Entity } from 'typeorm';
+import { Column, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User {
-  @Column({ primary: true, generated: true })
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
@@ -20,4 +21,8 @@ export class User {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  @OneToMany(() => Visual, (visual) => visual.user)
+  visuals: Visual[];
+
 }
