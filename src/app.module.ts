@@ -4,7 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MeasurementTypesModule } from './measurement-types/measurement-types.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
-import { MeasurementVisualModule } from './measurementVisual/measurement-visual.module'; // Importa el módulo de MeasurementVisual
+import { MeasurementVisualModule } from './measurementVisual/measurement-visual.module';
+import { MetricsModule } from './metrics/metrics.module'; // Asegúrate de importar MetricsModule aquí
 
 @Module({
   imports: [
@@ -23,7 +24,8 @@ import { MeasurementVisualModule } from './measurementVisual/measurement-visual.
     AuthModule,
     VisualModule,
     MeasurementTypesModule,
-    MeasurementVisualModule, // Agrega MeasurementVisualModule aquí
+    MeasurementVisualModule,
+    MetricsModule, // Aquí importamos MetricsModule que ya incluye HttpModule
   ],
   controllers: [],
   providers: [],
