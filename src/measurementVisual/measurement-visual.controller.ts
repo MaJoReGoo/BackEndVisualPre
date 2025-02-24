@@ -5,7 +5,9 @@ import { UpdateMeasurementVisualDto } from './dto/update-measurement-visual.dto'
 
 @Controller('measurement-visual')
 export class MeasurementVisualController {
-  constructor(private readonly measurementVisualService: MeasurementVisualService) {}
+  constructor(
+    private readonly measurementVisualService: MeasurementVisualService,
+  ) {}
 
   // Endpoint para crear la relación
   @Post()
@@ -15,7 +17,10 @@ export class MeasurementVisualController {
 
   // Endpoint para actualizar la relación
   @Put(':id')
-  async update(@Param('id') id: number, @Body() updateMeasurementVisualDto: UpdateMeasurementVisualDto) {
+  async update(
+    @Param('id') id: number,
+    @Body() updateMeasurementVisualDto: UpdateMeasurementVisualDto,
+  ) {
     return this.measurementVisualService.update(id, updateMeasurementVisualDto);
   }
 }

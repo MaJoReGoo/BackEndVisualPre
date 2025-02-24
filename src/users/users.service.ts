@@ -30,9 +30,9 @@ export class UsersService {
 
   // Buscar un usuario por su email y devolver su password, id y rol
   async findOneByEmailWithPassword(email: string) {
-    return this.userRepository.findOne({ 
+    return this.userRepository.findOne({
       where: { email },
-      select: ['id', 'email', 'password', 'rol'],  // Solo seleccionamos los campos que necesitamos
+      select: ['id', 'email', 'password', 'rol'], // Solo seleccionamos los campos que necesitamos
     });
   }
 
@@ -64,4 +64,3 @@ export class UsersService {
     return this.userRepository.remove(user);
   }
 }
-

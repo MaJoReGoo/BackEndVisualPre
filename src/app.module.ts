@@ -5,7 +5,6 @@ import { MeasurementTypesModule } from './measurement-types/measurement-types.mo
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { MeasurementVisualModule } from './measurementVisual/measurement-visual.module';
-import { MetricsModule } from './metrics/metrics.module'; // Asegúrate de importar MetricsModule aquí
 
 @Module({
   imports: [
@@ -25,7 +24,6 @@ import { MetricsModule } from './metrics/metrics.module'; // Asegúrate de impor
     VisualModule,
     MeasurementTypesModule,
     MeasurementVisualModule,
-    MetricsModule, // Aquí importamos MetricsModule que ya incluye HttpModule
   ],
   controllers: [],
   providers: [],

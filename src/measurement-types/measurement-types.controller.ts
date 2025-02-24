@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { MeasurementTypesService } from './measurement-types.service';
 import { CreateMeasurementTypeDto } from './dto/create-measurement-type.dto';
 import { UpdateMeasurementTypeDto } from './dto/update-measurement-type.dto';
@@ -8,9 +16,11 @@ import { Role } from 'src/common/enums/role.enum';
 @Auth(Role.ADMIN)
 @Controller('measurement-types')
 export class MeasurementTypesController {
-  constructor(private readonly measurementTypesService: MeasurementTypesService) {}
+  constructor(
+    private readonly measurementTypesService: MeasurementTypesService,
+  ) {}
 
-  @Post()
+  @Post('/create')
   create(@Body() createMeasurementTypeDto: CreateMeasurementTypeDto) {
     return this.measurementTypesService.create(createMeasurementTypeDto);
   }
@@ -26,10 +36,12 @@ export class MeasurementTypesController {
   }
 
   @Patch(':id')
-update(@Param('id') id: number, @Body() updateMeasurementTypeDto: UpdateMeasurementTypeDto) {
-  return this.measurementTypesService.update(id, updateMeasurementTypeDto);
-}
-
+  update(
+    @Param('id') id: number,
+    @Body() updateMeasurementTypeDto: UpdateMeasurementTypeDto,
+  ) {
+    return this.measurementTypesService.update(id, updateMeasurementTypeDto);
+  }
 
   @Delete(':id')
   remove(@Param('id') id: number) {

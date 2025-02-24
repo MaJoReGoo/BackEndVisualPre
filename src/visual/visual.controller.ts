@@ -37,7 +37,10 @@ export class VisualController {
 
   // Obtener un recurso visual por su id
   @Get(':id')
-  async findOne(@Param('id') id: number, @ActiveUser() user: UserActiveInterface) {
+  async findOne(
+    @Param('id') id: number,
+    @ActiveUser() user: UserActiveInterface,
+  ) {
     return this.visualService.findOne(id, user); // Llama al servicio para obtener un visual específico por id
   }
 
@@ -53,7 +56,10 @@ export class VisualController {
 
   // Eliminar un recurso visual por su id
   @Delete(':id')
-  async remove(@Param('id') id: number, @ActiveUser() user: UserActiveInterface) {
+  async remove(
+    @Param('id') id: number,
+    @ActiveUser() user: UserActiveInterface,
+  ) {
     return this.visualService.remove(id, user); // Llama al servicio para eliminar un visual
   }
 }

@@ -48,16 +48,17 @@ export class VisualService {
 
     const newVisual = this.visualRepository.create({
       ...createVisualDto,
+      serverPort: parseInt(createVisualDto.serverPort, 10), // Convertir a número
       userId: user.id,
     });
 
-    // Guardar el Visual creado
+    // Save the Visual entity as a single object
     const visual = await this.visualRepository.save(newVisual);
 
-    // Crear las relaciones en la tabla intermedia MeasurementVisual
+    // Create relationships in the MeasurementVisual table
     for (const measurementType of measurementTypes) {
       const measurementVisual = new MeasurementVisual();
-      measurementVisual.visual = visual;
+      measurementVisual.visual = visual; // Make sure visual is a single object here
       measurementVisual.measurementType = measurementType;
       await this.measurementVisualRepository.save(measurementVisual);
     }
@@ -125,15 +126,24 @@ export class VisualService {
     this.validateOwnership(visual, user);
 
     // Actualizar los campos básicos del Visual solo si no son null o undefined
-    if (updateVisualDto.serverName !== undefined && updateVisualDto.serverName !== null) {
+    if (
+      updateVisualDto.serverName !== undefined &&
+      updateVisualDto.serverName !== null
+    ) {
       visual.serverName = updateVisualDto.serverName;
     }
 
-    if (updateVisualDto.serverIp !== undefined && updateVisualDto.serverIp !== null) {
+    if (
+      updateVisualDto.serverIp !== undefined &&
+      updateVisualDto.serverIp !== null
+    ) {
       visual.serverIp = updateVisualDto.serverIp;
     }
 
-    if (updateVisualDto.serverPort !== undefined && updateVisualDto.serverPort !== null) {
+    if (
+      updateVisualDto.serverPort !== undefined &&
+      updateVisualDto.serverPort !== null
+    ) {
       visual.serverPort = updateVisualDto.serverPort;
     }
 
@@ -151,10 +161,11 @@ export class VisualService {
       }
 
       // Obtener las relaciones actuales entre Visual y MeasurementTypes
-      const existingMeasurementVisuals = await this.measurementVisualRepository.find({
-        where: { visual: { id: visual.id } },
-        relations: ['measurementType'],
-      });
+      const existingMeasurementVisuals =
+        await this.measurementVisualRepository.find({
+          where: { visual: { id: visual.id } },
+          relations: ['measurementType'],
+        });
 
       const existingMeasurementTypeIds = existingMeasurementVisuals.map(
         (rel) => rel.measurementType.id,

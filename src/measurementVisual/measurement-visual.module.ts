@@ -7,7 +7,9 @@ import { MeasurementType } from 'src/measurement-types/entities/measurement-type
 import { Visual } from 'src/visual/entities/visual.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([MeasurementVisual, MeasurementType, Visual])],
+  imports: [
+    TypeOrmModule.forFeature([MeasurementVisual, MeasurementType, Visual]),
+  ],
   providers: [MeasurementVisualService],
   controllers: [MeasurementVisualController],
 })

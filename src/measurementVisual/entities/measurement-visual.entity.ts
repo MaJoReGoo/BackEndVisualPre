@@ -1,4 +1,10 @@
-import { Entity, ManyToOne, JoinColumn, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  ManyToOne,
+  JoinColumn,
+  PrimaryGeneratedColumn,
+  Column,
+} from 'typeorm';
 import { Visual } from '../../visual/entities/visual.entity';
 import { MeasurementType } from '../../measurement-types/entities/measurement-type.entity';
 
@@ -11,9 +17,10 @@ export class MeasurementVisual {
   @JoinColumn({ name: 'visualId', referencedColumnName: 'id' })
   visual: Visual;
 
-  @ManyToOne(() => MeasurementType, (measurementType) => measurementType.measurementVisuals)
+  @ManyToOne(
+    () => MeasurementType,
+    (measurementType) => measurementType.measurementVisuals,
+  )
   @JoinColumn({ name: 'measurementTypeId', referencedColumnName: 'id' })
   measurementType: MeasurementType;
 }
-
-

@@ -1,6 +1,12 @@
 import { Visual } from 'src/visual/entities/visual.entity';
 import { Role } from '../../common/enums/role.enum';
-import { Column, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  DeleteDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class User {
@@ -24,5 +30,4 @@ export class User {
 
   @OneToMany(() => Visual, (visual) => visual.user)
   visuals: Visual[];
-
 }

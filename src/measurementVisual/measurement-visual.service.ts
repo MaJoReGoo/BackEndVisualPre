@@ -49,7 +49,10 @@ export class MeasurementVisualService {
   }
 
   // Actualizar la relación (en este caso reemplazando los MeasurementTypes)
-  async update(id: number, updateMeasurementVisualDto: UpdateMeasurementVisualDto) {
+  async update(
+    id: number,
+    updateMeasurementVisualDto: UpdateMeasurementVisualDto,
+  ) {
     const { measurementTypeIds, visualId } = updateMeasurementVisualDto;
 
     // Verificar si el Visual existe

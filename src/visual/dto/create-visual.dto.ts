@@ -1,14 +1,19 @@
-import { IsArray, IsInt, IsNumber, IsOptional, IsString } from "class-validator";
+// src/visual/dto/create-visual.dto.ts
+
+import { IsArray, IsInt, IsNotEmpty } from 'class-validator';
 
 export class CreateVisualDto {
-
-  @IsString()
+  @IsNotEmpty()
   serverName: string;
-  @IsString()
+
+  @IsNotEmpty()
   serverIp: string;
-  @IsInt()
-  serverPort: number;
-  @IsOptional()
+
+  @IsNotEmpty()
+  serverPort: string;
+
+  // Cambiar measurementTypeId a measurementTypeIds (un array de números)
   @IsArray()
-  measurementTypeIds?: number[];  // Cambiar de measurementType a measurementTypeIds
+  @IsInt({ each: true }) // Asegúrate de que cada elemento del array sea un número
+  measurementTypeIds: number[];
 }
